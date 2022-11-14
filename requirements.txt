@@ -1,0 +1,30 @@
+Requirements:
+Web frame work:
+	flask or Django to deploy the script to the web
+
+Apis needed:
+	Uber 
+	Lyft
+	Bus routes - look into us bus route api if possible - (google api has bus travel time)
+	Api that converts an address to a lat and long - positionstack
+
+Website setup:
+	time estimate page
+	price estimate page 
+	both compare uber, Lyft, and bus estimates for the route
+	home page
+	info page to say what the website is about
+	the address box has auto fill capability so that we can get a defined address
+
+
+Roles:
+	Carson - Lyft
+	Blake - position stack api
+	Ethan - Figure out the best web frame work and how it is done
+	Nathaniel - Uber
+	Robert - figure out google api
+
+
+When figuring out api:
+	see what the end points need for params 
+	see what the end point returns as a response
