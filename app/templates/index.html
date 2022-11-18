@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <h1>Home Page</h1>
+
+        <form action='/' method="POST">
+            <label for="currentLocation">Current Location:</label>
+            <input type="text" name="currentLocation"/>
+
+            <label for="destination">Destination:</label>
+            <input type="text" name="destination"/>
+
+            <input type="submit" name="submitButton"/>
+        </form>
+
+        <p>Current Location: {{template_route.start}}</p>
+        <p>Destination: {{template_route.destination}}</p>
+    </body>
+</html>
