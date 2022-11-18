@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <body>
-        <h1>Home Page</h1>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Compare Transportation</title>
+		<link rel="stylesheet" href="../static/css/style.css" />
+	</head>
+	<body>
+		<h1>Home Page</h1>
 
-        <form action='/' method="POST">
-            <label for="currentLocation">Current Location:</label>
-            <input type="text" name="currentLocation"/>
+		<form action="/" method="POST">
+			<label for="currentLocation">Current Location:</label>
+			<input type="text" name="currentLocation" />
 
-            <label for="destination">Destination:</label>
-            <input type="text" name="destination"/>
+			<label for="destination">Destination:</label>
+			<input type="text" name="destination" />
 
-            <input type="submit" name="submitButton"/>
-        </form>
+			<input type="submit" name="submitButton" />
+		</form>
 
-        <p>Current Location: {{template_route.start}}</p>
-        <p>Destination: {{template_route.destination}}</p>
-    </body>
+		<p>Current Location: {{template_route.start}}</p>
+		<p>Destination: {{template_route.destination}}</p>
+	</body>
 </html>
