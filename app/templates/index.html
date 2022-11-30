@@ -7,20 +7,47 @@
 		<title>Compare Transportation</title>
 		<link rel="stylesheet" href="../static/css/style.css" />
 	</head>
-	<body>
-		<h1>Home Page</h1>
+	<body class="container">
+		<div class="header">
+			<h1 class="header_text">Compare Transportation</h1>
+		</div>
 
 		<form action="/" method="POST">
-			<label for="currentLocation">Current Location:</label>
-			<input type="text" name="currentLocation" />
+			<div class="current_location_input_div">
+				<label for="currentLocation">Current Location:</label>
+				<input id="current_location_input" type="text" name="currentLocation" />
+			</div>
 
-			<label for="destination">Destination:</label>
-			<input type="text" name="destination" />
+			<div class="destination_input_div">
+				<label for="destination">Destination:</label>
+				<input id="destination_input" type="text" name="destination" />
+			</div>
 
-			<input type="submit" name="submitButton" />
+			<button type="submit" name="submitButton">Submit</button>
 		</form>
 
 		<p>Current Location: {{template_route.start}}</p>
 		<p>Destination: {{template_route.destination}}</p>
+
+		<!--
+			When importing a script,
+			Import it at the bottom of body
+		-->
+		<script
+			type="text/javascript"
+			src="{{ url_for('static', filename='index.js') }}"
+		></script>
+
+		<!--
+			Loading autocomplete API
+			API Key has unrestricted access so anyone can use it
+
+			issue:
+				Places API requires a billing account, I'm not sure if
+				there is a workaround for this 
+		-->
+		<script async
+    		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ60DmWOcVVmwHreizFWSfp2EHrTzJIcg&libraries=places&callback=initMap"
+		></script>
 	</body>
 </html>

@@ -1,0 +1,78 @@
+/* CSS Styling for Container(Body Tag) */
+.container
+{
+    background-color: rgb(53, 53, 53);
+}
+
+/* CSS Styling for Title Div */
+.header
+{
+    text-align: center;
+    height: 100px;
+    background-color: rgb(32, 32, 32);
+    margin-bottom: 20px;
+    padding: 10px;
+
+    position: relative;
+    left:0px;
+    right: 0px;
+    top: 0px;
+
+    /* Cool CSS Styling */
+    text-transform: uppercase;
+    background-image: linear-gradient(
+    -225deg,
+    #3f14db 0%,
+    rgb(53, 53, 53) 30%,
+    rgb(253, 27, 102) 67%,
+    #26b0ff 100%
+  );
+    background-size: auto auto;
+    background-clip: border-box;
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textclip 3s linear infinite;
+}
+/* Animation for the Title Text */
+@keyframes textclip {
+    to {
+      background-position: 200% center;
+    }
+}
+
+/* CSS Styling for Title Text */
+.header_text
+{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* Current Location Input Div */
+.current_location_input_div
+{
+    font-size:larger;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight:bold;
+    color: rgb(139, 142, 145);
+
+    text-align: center;
+}
+/* Current Location Input Div */
+.destination_input_div
+{
+    font-size:larger;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight:bold;
+    color: rgb(139, 142, 145);
+
+    text-align: center;
+}
+
+/* All input text fields */
+input
+{
+    background-color: rgb(139, 142, 145);
+    border-radius: 20%;
+    border-left: 0;
+}
