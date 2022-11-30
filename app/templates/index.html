@@ -12,7 +12,7 @@
 
 		<form action="/" method="POST">
 			<label for="currentLocation">Current Location:</label>
-			<input type="text" name="currentLocation" />
+			<input type="text" name="currentLocation" id="userLocation" />
 
 			<label for="destination">Destination:</label>
 			<input type="text" name="destination" />
@@ -22,5 +22,16 @@
 
 		<p>Current Location: {{template_route.start}}</p>
 		<p>Destination: {{template_route.destination}}</p>
+
+		{% if template_userLocation.longitude %}
+		<p>{{template_userLocation.longitude}}</p>
+		{% endif %}
 	</body>
+	<!--Script for autofilling the user's current location-->
+	<script src="{{url_for('static', filename='user_autofill.js')}}"></script>
+	<!--Google Maps API, requires API key to work -->
+	<script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXCKANoCZ0fW6j3PVu4uV696-mi1rvLV8"
+      defer
+    ></script>
 </html>
