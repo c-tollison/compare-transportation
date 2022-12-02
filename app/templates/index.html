@@ -35,7 +35,14 @@
 			<button type="submit" name="submit" value="Submit Route">Submit</button>
 		</form>
 
-		<!--If the full route is input, display it to the user-->
+		<!--
+			If the full route is input, display it to the user.
+			
+			This display is just temporary for testing, a better
+			way of displaying this to the user would probably
+			include a visual map like the one provided
+			by the Google Maps API.
+		-->
 		{% if template_start and template_destination %}
 		<p>Start: {{template_start}}</p>
 		<p>End: {{template_destination}}</p>
@@ -61,7 +68,7 @@
 		<script
 		defer
 		async
-      	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXCKANoCZ0fW6j3PVu4uV696-mi1rvLV8&libraries=places&callback=initMap"
+      	src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAPS_API_KEY_GOES_HERE&libraries=places&callback=initMap"
     	></script>
 
 		<!--
