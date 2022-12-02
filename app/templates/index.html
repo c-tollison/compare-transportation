@@ -16,12 +16,12 @@
 		</div>
 
 		<form action="/" method="POST">
-			<div class="current_location_input_div">
-				<label for="currentLocation">Current Location:</label>
+			<div class="start_input_div">
+				<label for="start">Starting Location:</label>
 				{% if template_start %}
-				<input id="current_location_input" type="text" name="currentLocation" value="{{template_start}}"/>
+				<input id="start_input" type="text" name="start" value="{{template_start}}"/>
 				{% else %}
-				<input id="current_location_input" type="text" name="currentLocation"/>
+				<input id="start_input" type="text" name="start"/>
 				{% endif %}
 			</div>
 

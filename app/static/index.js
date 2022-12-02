@@ -6,7 +6,7 @@
 function initMap(){
 
     /* Autocomplete for the Current Location Input Field */
-    autocomplete = new google.maps.places.Autocomplete(document.getElementById("current_location_input"),
+    autocomplete = new google.maps.places.Autocomplete(document.getElementById("start_input"),
     {
         componentRestrictions: {'country': ['us']},
         fields: ['geometry', 'name'],

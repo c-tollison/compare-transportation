@@ -13,7 +13,7 @@ def home():
         return render_template('index.html', getLocation = True)
     if request.method == 'POST':
         if request.form['submit'] == 'Submit Route':
-            route['start'] = request.form['currentLocation']
+            route['start'] = request.form['start']
             route['destination'] = request.form['destination']
     return render_template('index.html', 
         template_start = route['start'], 

@@ -17,7 +17,7 @@ const onSuccess = async (result) => {
         body: JSON.stringify(data)
     }).then(response => console.log(response));
     //window.location = 'http://127.0.0.1:5000/';
-    document.getElementById('current_location_input').setAttribute('value', data.address);
+    document.getElementById('start_input').setAttribute('value', data.address);
 }
 
 //Don't allow for location processing until the whole DOM has loaded to ensure that Google Maps API has been defined
