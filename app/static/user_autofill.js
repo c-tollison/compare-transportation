@@ -9,7 +9,7 @@
 */
 
 //Should be the base url of the flask app
-const baseURL = 'hhtp://127.0.0.1:5000/';
+const baseURL = 'http://127.0.0.1:5000/';
 
 const onSuccess = async (result) => {
     //Data object to be sent to flask app
