@@ -37,12 +37,6 @@
 			<button type="submit" name="submit" value="Submit Route">Submit</button>
 		</form>
 
-		{% if not template_start %}
-		<form action="/" method="POST">
-			<input type="submit" name="submit" value="Autofill Current Location"/>
-		</form>
-		{% endif %}
-
 		<!--If the full route is input, display it to the user-->
 		{% if template_start and template_destination %}
 		<p>Start: {{template_start}}</p>
@@ -66,9 +60,15 @@
 				Places API requires a billing account, I'm not sure if
 				there is a workaround for this 
 		-->
-		<script 
+		<!-- <script 
 			defer
     		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXCKANoCZ0fW6j3PVu4uV696-mi1rvLV8"
-		></script>
+		></script> -->
+		<script
+		id="googleAPI"
+		defer
+		async
+      	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXCKANoCZ0fW6j3PVu4uV696-mi1rvLV8"
+    	></script>
 	</body>
 </html>
