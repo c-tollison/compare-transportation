@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+{% if getLocation %}
+	<script src="{{url_for('static', filename='user_autofill.js')}}"></script>
+{% endif %}
 <html>
 	<head>
 		<meta charset="UTF-8" />
@@ -11,27 +14,32 @@
 		<h1>Home Page</h1>
 
 		<form action="/" method="POST">
-			<label for="currentLocation">Current Location:</label>
-			<input type="text" name="currentLocation" id="userLocation" />
+			<label for="start">Start:</label>
+			{% if template_start %}
+			<input type="text" name="start" value="{{template_start}}" />
+			{% else %}
+			<input type="text" name="start" />
+			{% endif %}
 
 			<label for="destination">Destination:</label>
+			{% if template_destination %}
+			<input type="text" name="destination" value="{{template_destination}}" />
+			{% else %}
 			<input type="text" name="destination" />
+			{% endif %}
 
-			<input type="submit" name="submitButton" />
+			<input type="submit" name="submit" value="Submit Route"/>
 		</form>
 
-		<p>Current Location: {{template_route.start}}</p>
-		<p>Destination: {{template_route.destination}}</p>
-
-		{% if template_userLocation.longitude %}
-		<p>{{template_userLocation.longitude}}</p>
+		{% if not template_start %}
+		<form action="/" method="POST">
+			<input type="submit" name="submit" value="Autofill Current Location"/>
+		</form>
 		{% endif %}
 	</body>
-	<!--Script for autofilling the user's current location-->
-	<script src="{{url_for('static', filename='user_autofill.js')}}"></script>
 	<!--Google Maps API, requires API key to work -->
 	<script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXCKANoCZ0fW6j3PVu4uV696-mi1rvLV8"
-      defer
+		defer
+      	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXCKANoCZ0fW6j3PVu4uV696-mi1rvLV8"
     ></script>
 </html>
