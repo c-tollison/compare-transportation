@@ -15,7 +15,7 @@ const onSuccess = async (result) => {
             'Accept': 'application/json'
         },
         body: JSON.stringify(data)
-    }).then(response => console.log(response));
+    });
     //window.location = 'http://127.0.0.1:5000/';
     document.getElementById('start_input').setAttribute('value', data.address);
 }
