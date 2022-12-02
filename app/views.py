@@ -9,8 +9,7 @@ route = {
 }
 @views.route("/", methods=["GET", "POST"])
 def home():
-    if not route['start']:
-        return render_template('index.html', getLocation = True)
+    #On form submission, process input
     if request.method == 'POST':
         if request.form['submit'] == 'Submit Route':
             route['start'] = request.form['start']
@@ -20,10 +19,10 @@ def home():
         template_destination = route['destination'],
         getLocation = False if route['start'] else True)
     
-
+#Endpoint used to post user location to be used
+#as the route start.
 @views.route('/location', methods=["GET", "POST"])
 def location():
     if request.method == 'POST':
         route['start'] = request.json['address']
     return route['start']
-    
