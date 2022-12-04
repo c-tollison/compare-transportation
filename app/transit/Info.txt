@@ -1,0 +1,14 @@
+Dependencies -- requests module.
+py -m pip install requests
+KEY.txt must contain the API key
+
+to run:
+py GoogleRoutes
+
+
+Additional:
+mode can be set to 
+=driving
+=walking
+=transit (can be specified which transit, but that route may not exist)
+

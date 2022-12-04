@@ -1,0 +1,23 @@
+
+import requests
+
+fileObject = open("KEY.txt", "r")
+data = fileObject.read()
+
+origin = input("Start: ")
+destin = input("Destination: ")
+
+
+origin = origin.replace(",","")
+destin = destin.replace(",","")
+origin = origin.replace(" ","%2C%20C")
+destin = destin.replace(" ","%2C%20C")
+
+url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins="+ origin +"&destinations="+ destin +"&mode=driving&units=imperial&key=" + data
+
+payload={}
+headers = {}
+
+response = requests.request("GET", url, headers=headers, data=payload)
+
+print(response.text)
