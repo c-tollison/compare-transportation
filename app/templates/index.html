@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 	<head>
 		<meta charset="UTF-8" />
@@ -13,21 +14,39 @@
 		</div>
 
 		<form action="/" method="POST">
-			<div class="current_location_input_div">
-				<label for="currentLocation">Current Location:</label>
-				<input id="current_location_input" type="text" name="currentLocation" />
+			<div class="start_input_div">
+				<label for="start">Starting Location:</label>
+				{% if template_start %}
+				<input id="start_input" type="text" name="start" value="{{template_start}}"/>
+				{% else %}
+				<input id="start_input" type="text" name="start"/>
+				{% endif %}
 			</div>
 
 			<div class="destination_input_div">
 				<label for="destination">Destination:</label>
+				{% if template_start %}
+				<input id="destination_input" type="text" name="destination" value="{{template_destination}}"/>
+				{% else %}
 				<input id="destination_input" type="text" name="destination" />
+				{% endif %}
 			</div>
 
-			<button type="submit" name="submitButton">Submit</button>
+			<button type="submit" name="submit" value="Submit Route">Submit</button>
 		</form>
 
-		<p>Current Location: {{template_route.start}}</p>
-		<p>Destination: {{template_route.destination}}</p>
+		<!--
+			If the full route is input, display it to the user.
+			
+			This display is just temporary for testing, a better
+			way of displaying this to the user would probably
+			include a visual map like the one provided
+			by the Google Maps API.
+		-->
+		{% if template_start and template_destination %}
+		<p>Start: {{template_start}}</p>
+		<p>End: {{template_destination}}</p>
+		{% endif %}
 
 		<!--
 			When importing a script,
@@ -46,8 +65,19 @@
 				Places API requires a billing account, I'm not sure if
 				there is a workaround for this 
 		-->
-		<script async
-    		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJ60DmWOcVVmwHreizFWSfp2EHrTzJIcg&libraries=places&callback=initMap"
-		></script>
+		<script
+			defer
+			async
+			src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAPS_API_KEY_GOES_HERE&libraries=places&callback=initMap"
+    	></script>
+
+		<!--
+			This script only loads if there is not a starting location already
+			set. It will try to get the user's current location to autofill
+			for start.
+		-->
+		{% if getLocation %}
+		<script src="{{url_for('static', filename='user_autofill.js')}}"></script>
+		{% endif %}
 	</body>
 </html>
