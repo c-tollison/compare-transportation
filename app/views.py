@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request
+import app.transit.GoogleRoutes as GoogleRotues
 
 views = Blueprint('views', __name__)
 
@@ -14,6 +15,7 @@ def home():
         if request.form['submit'] == 'Submit Route':
             route['start'] = request.form['start']
             route['destination'] = request.form['destination']
+            return GoogleRotues.getRoute(route['start'], route['destination'])
     return render_template('index.html', 
         template_start = route['start'], 
         template_destination = route['destination'],
