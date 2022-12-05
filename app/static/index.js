@@ -10,7 +10,7 @@ function initMap(){
     {
         componentRestrictions: {'country': ['us']},
         fields: ['geometry', 'name'],
-        types: ['establishment']
+        types: []
     });
     
     /* Autocomplete for the Destination Input Field */
@@ -18,6 +18,6 @@ function initMap(){
     {
         componentRestrictions: {'country': ['us']},
         fields: ['geometry', 'name'],
-        types: ['establishment']
+        types: []
     });
 }
