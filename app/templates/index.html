@@ -9,8 +9,14 @@
 		<link rel="stylesheet" href="../static/css/style.css" />
 	</head>
 	<body class="container">
+		<!-- Header Text -->
 		<div class="header">
 			<h1 class="header_text">Compare Transportation</h1>
+		</div>
+
+		<!-- Image -->
+		<div class="mainImg">
+			<img src="https://img.freepik.com/premium-vector/traffic-jam-with-cars-caravan-trailer-truck-driving-city-road-modern-cityscape-background-flat-horizontal-banner_48369-28042.jpg?w=2000">
 		</div>
 
 		<form action="/" method="POST">
@@ -31,8 +37,10 @@
 				<input id="destination_input" type="text" name="destination" />
 				{% endif %}
 			</div>
-
-			<button type="submit" name="submit" value="Submit Route">Submit</button>
+			
+			<div class="submit_button_div">
+				<button type="submit" class="submit_button" name="submit" value="Submit Route">Submit</button>
+			</div>
 		</form>
 
 		<!--
@@ -44,8 +52,10 @@
 			by the Google Maps API.
 		-->
 		{% if template_start and template_destination %}
-		<p>Start: {{template_start}}</p>
-		<p>End: {{template_destination}}</p>
+		<div class="output_text">
+			<p>Start: {{template_start}}</p>
+			<p>End: {{template_destination}}</p>
+		</div>
 		{% endif %}
 
 		<!--
@@ -79,5 +89,18 @@
 		{% if getLocation %}
 		<script src="{{url_for('static', filename='user_autofill.js')}}"></script>
 		{% endif %}
+
+		<!-- header tag and paragraph tag for general info about the program -->
+		<div class="about_us">
+			<h1>About Us</h1>
+		</div>
+
+		<div class="info_text">
+			<p>
+				Compare Transportation is program designed to help people get around town efficiently!
+				Enter your starting and ending destination, and our program will analyze the different
+				routes and times for your trip.
+			</p>
+		</div>
 	</body>
 </html>
