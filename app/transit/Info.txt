@@ -10,5 +10,7 @@ Additional:
 mode can be set to 
 =driving
 =walking
+=bicycling
 =transit (can be specified which transit, but that route may not exist)
+To specify transit mode set transit_mode to bus, subway, train, tram, or rail
 
