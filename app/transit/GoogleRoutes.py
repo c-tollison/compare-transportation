@@ -22,6 +22,19 @@ import requests
 
 # print(response.text) ##prints JSON output to command line
 
+
+"""
+Inputs are both address strings and the response is a dictionary formatted as follows:
+{
+    'driving': {
+        'duration': '___ min'
+        'distance': '___ miles'
+    }
+    ...
+}
+Driving, walking, and bicycling keys will always be included,
+while transit is only included if results are found.
+"""
 def getRoute(origin, destin):
     key = 'API_KEY'
     payload={}
