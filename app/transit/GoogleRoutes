@@ -1,5 +1,6 @@
 
 import requests
+#import os.path
 
 fileObject = open("KEY.txt", "r") #Gets file that contains the API Key
 data = fileObject.read() #reads API key
