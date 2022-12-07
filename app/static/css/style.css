@@ -76,3 +76,85 @@ input
     border-radius: 20%;
     border-left: 0;
 }
+
+/* CSS for submit button */
+.submit_button_div
+{
+    text-align: center;
+}
+.submit_button
+{
+    display: inline-block;
+    outline: 0;
+    border:0;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    top: 30px;
+    color: #000;
+    background: rgb(139, 142, 145);
+    line-height: 20px;
+    border-radius: 30px;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 600;
+    box-shadow: #26b0ff -2px -2px 0px 2px, rgb(253, 27, 102) 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
+    transition: all 0.2s;
+
+}
+
+.submit_button:hover{
+    box-shadow: rgb(253, 27, 102) -2px -2px 0px 2px, #26b0ff 0px 0px 0px 4px, rgba(0, 0, 0, 0.05) 0px 0px 2px 7px;
+    transform: scale(1.01);
+}
+
+/* CSS for output text */
+.output_text
+{
+    font-size:larger;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight:bold;
+    color: rgb(139, 142, 145);
+
+    position: relative;
+    top:30px;
+
+    text-align: center;
+}
+
+/* Image CSS */
+.mainImg
+{
+    position: relative;
+    bottom:40px;
+    
+}
+
+.about_us
+{
+    font-size:larger;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight:bold;
+    color: rgb(139, 142, 145);
+
+    position: relative;
+    top:30px;
+
+    text-align: center;
+}
+
+.info_text
+{
+    font-size:larger;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight:bold;
+    color: rgb(139, 142, 145);
+
+    position: relative;
+    top:30px;
+    left:50%;
+    transform: translate(-50%, 0);
+
+    width:700px;
+    text-align: center;
+}
