@@ -16,27 +16,18 @@ const onSuccess = async (result) => {
     data = {
         latitude: result.coords.latitude,
         longitude: result.coords.longitude,
-        address: ''
     }
 
-    //Geocode coords into address
-    geocoder = new google.maps.Geocoder();
-    await geocoder.geocode({location: {lat: result.coords.latitude, lng: result.coords.longitude}}).then(response => {
-        data.address = response.results[0].formatted_address;
-    });
-
-    //Post data to flask app
+    //Post data to flask app and update starting location after response.
     await fetch(`${baseURL}/location`, {
         method: 'POST',
         headers: {
             'Content-type': 'application/json',
             'Accept': 'application/json'
         },
-        body: JSON.stringify(data)
-    });
-
-    //Set the value of starting location input
-    document.getElementById('start_input').setAttribute('value', data.address);
+        body: JSON.stringify(data)})
+    .then(response => response.json())
+    .then(jsonresponse => document.getElementById('start_input').setAttribute('value', jsonresponse['addr']));
 }
 
 //Don't allow for location processing until the whole DOM has loaded to ensure that Google Maps API has been defined.
