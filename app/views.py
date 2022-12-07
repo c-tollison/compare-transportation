@@ -5,19 +5,22 @@ import app.geocoding.geocoding as geocoding
 views = Blueprint('views', __name__)
 
 
-route = {
-    'start': '',
-    'destination': ''
-}
+
+
 @views.route("/", methods=["GET", "POST"])
 @views.route("/location", methods=["POST"])
 def home():
+    route = {
+        'start': '',
+        'destination': ''
+    }
+    routes = {}
     #On form submission, process input
     if request.path == '/' and request.method == 'POST':
         if request.form['submit'] == 'Submit Route':
             route['start'] = request.form['start']
             route['destination'] = request.form['destination']
-            return GoogleRotues.getRoute(route['start'], route['destination'])
+            routes = GoogleRotues.getRoute(route['start'], route['destination'])
     # Sets route['start'] to the address obtained by
     # reverse geocoding the given coordinates 
     if request.path == '/location':
@@ -29,4 +32,5 @@ def home():
     return render_template('index.html', 
         template_start = route['start'], 
         template_destination = route['destination'],
-        getLocation = False if route['start'] else True)
+        getLocation = False if route['start'] else True,
+        template_routes = routes if routes else False)

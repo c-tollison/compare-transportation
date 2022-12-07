@@ -1,4 +1,4 @@
-
+from flask import url_for
 import requests
 
 # fileObject = open("KEY.txt", "r") #Gets file that contains the API Key
@@ -29,6 +29,7 @@ Inputs are both address strings and the response is a dictionary formatted as fo
     'driving': {
         'duration': '___ min'
         'distance': '___ miles'
+        'method': 'Driving'
     }
     ...
 }
@@ -47,21 +48,25 @@ def getRoute(origin, destin):
     results = {
         'driving': {
             'duration': driving.json()['rows'][0]['elements'][0]['duration']['text'],
-            'distance': driving.json()['rows'][0]['elements'][0]['distance']['text']
+            'distance': driving.json()['rows'][0]['elements'][0]['distance']['text'],
+            'method': 'Driving'
         },
         'walking': {
             'duration': walking.json()['rows'][0]['elements'][0]['duration']['text'],
-            'distance': walking.json()['rows'][0]['elements'][0]['distance']['text']
+            'distance': walking.json()['rows'][0]['elements'][0]['distance']['text'],
+            'method': 'Walking'
         },
         'bicycling': {
             'duration': bicycling.json()['rows'][0]['elements'][0]['duration']['text'],
-            'distance': bicycling.json()['rows'][0]['elements'][0]['distance']['text']
+            'distance': bicycling.json()['rows'][0]['elements'][0]['distance']['text'],
+            'method': 'Biking'
         }
     }
     if not transit.json()['rows'][0]['elements'][0]['status'] == 'ZERO_RESULTS':
         results['transit'] = {
             'duration': transit.json()['rows'][0]['elements'][0]['duration']['text'],
-            'distance': transit.json()['rows'][0]['elements'][0]['distance']['text']
+            'distance': transit.json()['rows'][0]['elements'][0]['distance']['text'],
+            'method': 'Transit'
         }
     return results
 

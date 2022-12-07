@@ -58,6 +58,16 @@
 		</div>
 		{% endif %}
 
+		{% if template_routes %}
+		{% for key in template_routes.keys() %}
+			<p>{{template_routes[key]['method']}}</p>
+			<ul>
+				<li>Distance: {{template_routes[key]['distance']}}</li>
+				<li>Duration: {{template_routes[key]['duration']}}</li>
+			</ul>
+		{% endfor %}
+		{% endif %}
+
 		<!--
 			When importing a script,
 			Import it at the bottom of body
@@ -78,7 +88,7 @@
 		<script
 			defer
 			async
-			src="https://maps.googleapis.com/maps/api/js?key=GOOGLE_MAPS_API_KEY_GOES_HERE&libraries=places&callback=initMap"
+			src="https://maps.googleapis.com/maps/api/js?key=API_KEY&libraries=places&callback=initMap"
     	></script>
 
 		<!--
