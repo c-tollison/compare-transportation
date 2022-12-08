@@ -1,6 +1,9 @@
 Dependencies -- requests module.
 py -m pip install requests
 KEY.txt must contain the API key
+    Nathan Edit - I took out the logic for KEY.txt because I couldn't 
+        get it working with the flask server, so for now just put
+        the API key in GoogleRoutes in place of the key variable.
 
 to run:
 py GoogleRoutes
@@ -10,5 +13,6 @@ Additional:
 mode can be set to 
 =driving
 =walking
+=bicycling
 =transit (can be specified which transit, but that route may not exist)
-
+To specify transit mode set transit_mode to bus, subway, train, tram, or rail.

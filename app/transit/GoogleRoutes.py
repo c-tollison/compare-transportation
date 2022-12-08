@@ -1,40 +1,37 @@
-
 import requests
-#import os.path
+from flask import url_for
 
-travel_methods = ['driving','walking','transit'] #traveling methods
-fileObject = open("KEY.txt", "r") #Gets file that contains the API Key
-data = fileObject.read() #reads API key
+"""
+Inputs are both address strings and the response is a dictionary formatted as follows:
+{
+    'driving': {
+        'duration': '___ min'
+        'distance': '___ miles'
+        'method': 'Driving'
+    }
+    ...
+}
+Driving, walking, and biking keys will always be included
+while transit is only included if results are found.
+"""
+def getRoutes(origin, destin):
+    key = 'API_KEY' #API_KEY
+    baseUrl = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' #base endpoint url
+    
+    results = {} #dictionary to be returned
+    travel_methods = ['driving', 'walking', 'transit', 'bicycling'] #traveling methods
+    
+    for travel_method in travel_methods: #loop through available travel methods
+        url = f"{baseUrl}{origin}&destinations={destin}&mode={travel_method}&units=imperial&key={key}" #Formatted request url
+        
+        payload={}
+        headers = {}
 
-origin = input("Start: ")
-destin = input("Destination: ") #gets user input of origin and destinatiion
-
-destin = destin.strip() #Removes leading and trailing spaces to prevent formatting issues
-origin = origin.strip()
-
-origin = origin.replace(",","")
-destin = destin.replace(",","") #removes commas from the origin and destination
-origin = origin.replace(" ","%2C%20C")
-destin = destin.replace(" ","%2C%20C") #removes spaces and replaces it with formating for the request string
-
-for index in range(len(travel_methods) ):
-    url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins="+ origin +"&destinations="+ destin +"&mode=" + travel_methods[index] +"&units=imperial&key=" + data #replaces data with API key to run locally, or make a file named KEY.txt with API in it
-
-    payload={}
-    headers = {}
-
-    response = requests.request("GET", url, headers=headers, data=payload) #get API response
-
-    getter = response.json() 
-    if(getter['rows'][0]['elements'][0]['status'] == "ZERO_RESULTS"):#check for valid distance
-        print("Zero results to travel by " + travel_methods[index])
-    else:
-        if(index == 0): #only places destination and origin once
-            print(getter['destination_addresses'][0])
-            print(getter['origin_addresses'][0])
-            print("\n")
-
-        print(travel_methods[index])#form of travel this distance is for
-        print(getter['rows'][0]['elements'][0]['distance']['text'])#distance
-        print(getter['rows'][0]['elements'][0]['duration']['text'])#travel time
-    print("\n")
+        response = requests.get(url, headers=headers, data=payload).json()
+        if not response['rows'][0]['elements'][0]['status'] == "ZERO_RESULTS": #check for valid distance
+            results[travel_method] = {
+                'duration': response['rows'][0]['elements'][0]['duration']['text'], #travel time
+                'distance': response['rows'][0]['elements'][0]['distance']['text'], #distance
+                'method': travel_method.title() #title case travel method
+            }
+    return results
