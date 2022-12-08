@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request
-import app.transit.GoogleRoutes as GoogleRotues
 import app.geocoding.geocoding as geocoding
+from app.transit.GoogleRoutes import getRoutes
 
 views = Blueprint('views', __name__)
 
@@ -20,7 +20,7 @@ def home():
         if request.form['submit'] == 'Submit Route':
             route['start'] = request.form['start']
             route['destination'] = request.form['destination']
-            routes = GoogleRotues.getRoute(route['start'], route['destination'])
+            routes = getRoutes(route['start'], route['destination'])
     # Sets route['start'] to the address obtained by
     # reverse geocoding the given coordinates 
     if request.path == '/location':

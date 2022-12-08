@@ -1,27 +1,4 @@
-from flask import url_for
 import requests
-
-# fileObject = open("KEY.txt", "r") #Gets file that contains the API Key
-# data = fileObject.read() #reads API key
-
-# origin = input("Start: ")
-# destin = input("Destination: ") #gets user input of origin and destinatiion
-
-
-# origin = origin.replace(",","")
-# destin = destin.replace(",","") #removes commas from the origin and destination
-# origin = origin.replace(" ","%2C%20C")
-# destin = destin.replace(" ","%2C%20C") #removes spaces and replaces it with formating for the request string
-
-# url = "https://maps.googleapis.com/maps/api/distancematrix/json?origins="+ origin +"&destinations="+ destin +"&mode=driving&units=imperial&key=" + data #replaces data with API key to run locally, or make a file named KEY.txt with API in it
-
-# payload={}
-# headers = {}
-
-# response = requests.request("GET", url, headers=headers, data=payload)
-
-# print(response.text) ##prints JSON output to command line
-
 
 """
 Inputs are both address strings and the response is a dictionary formatted as follows:
@@ -33,41 +10,27 @@ Inputs are both address strings and the response is a dictionary formatted as fo
     }
     ...
 }
-Driving, walking, and bicycling keys will always be included,
+Driving, walking, and biking keys will always be included
 while transit is only included if results are found.
 """
-def getRoute(origin, destin):
-    key = 'API_KEY'
-    payload={}
-    headers = {}
-    baseUrl = f"https://maps.googleapis.com/maps/api/distancematrix/json?origins={origin}&destinations={destin}&units=imperial&key={key}"
-    driving = requests.request("GET", baseUrl+'&mode=driving', headers=headers, data=payload)
-    walking = requests.request("GET", baseUrl+'&mode=walking', headers=headers, data=payload)
-    bicycling = requests.request("GET", baseUrl+'&mode=bicycling', headers=headers, data=payload)
-    transit = requests.request("GET", baseUrl+'&mode=transit', headers=headers, data=payload)
-    results = {
-        'driving': {
-            'duration': driving.json()['rows'][0]['elements'][0]['duration']['text'],
-            'distance': driving.json()['rows'][0]['elements'][0]['distance']['text'],
-            'method': 'Driving'
-        },
-        'walking': {
-            'duration': walking.json()['rows'][0]['elements'][0]['duration']['text'],
-            'distance': walking.json()['rows'][0]['elements'][0]['distance']['text'],
-            'method': 'Walking'
-        },
-        'bicycling': {
-            'duration': bicycling.json()['rows'][0]['elements'][0]['duration']['text'],
-            'distance': bicycling.json()['rows'][0]['elements'][0]['distance']['text'],
-            'method': 'Biking'
-        }
-    }
-    if not transit.json()['rows'][0]['elements'][0]['status'] == 'ZERO_RESULTS':
-        results['transit'] = {
-            'duration': transit.json()['rows'][0]['elements'][0]['duration']['text'],
-            'distance': transit.json()['rows'][0]['elements'][0]['distance']['text'],
-            'method': 'Transit'
-        }
-    return results
+def getRoutes(origin, destin):
+    key = 'AIzaSyB2I6lXwiso9_4VJNNLEDxzRucjzVz8k5E' #API_KEY
+    baseUrl = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' #base endpoint url
+    
+    results = {} #dictionary to be returned
+    travel_methods = ['driving', 'walking', 'transit', 'bicycling'] #traveling methods
+    
+    for travel_method in travel_methods: #loop through available travel methods
+        url = f"{baseUrl}{origin}&destinations={destin}&mode={travel_method}&units=imperial&key={key}" #Formatted request url
+        
+        payload={}
+        headers = {}
 
-    #"https://maps.googleapis.com/maps/api/distancematrix/json?origins="+ origin +"&destinations="+ destin +"&mode=driving&units=imperial&key=" + key
+        response = requests.get(url, headers=headers, data=payload).json()
+        if not response['rows'][0]['elements'][0]['status'] == "ZERO_RESULTS": #check for valid distance
+            results[travel_method] = {
+                'duration': response['rows'][0]['elements'][0]['duration']['text'], #travel time
+                'distance': response['rows'][0]['elements'][0]['distance']['text'], #distance
+                'method': travel_method.title() #title case travel method
+            }
+    return results
