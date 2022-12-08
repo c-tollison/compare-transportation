@@ -1,4 +1,5 @@
 import requests
+from flask import url_for
 
 """
 Inputs are both address strings and the response is a dictionary formatted as follows:
@@ -14,7 +15,7 @@ Driving, walking, and biking keys will always be included
 while transit is only included if results are found.
 """
 def getRoutes(origin, destin):
-    key = 'AIzaSyB2I6lXwiso9_4VJNNLEDxzRucjzVz8k5E' #API_KEY
+    key = 'API_KEY' #API_KEY
     baseUrl = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' #base endpoint url
     
     results = {} #dictionary to be returned
