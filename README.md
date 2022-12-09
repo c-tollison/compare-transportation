@@ -37,3 +37,8 @@ $ flask --app app/main run
 The app will be hosted on here:
 <br>
 [Port 5000](http://127.0.0.1:5000/)
+
+APIs Used:
+- Geocoding API: https://docs.mapbox.com/api/search/geocoding/
+- Google Maps APIs
+- OpenWeather API: https://openweathermap.org/current
