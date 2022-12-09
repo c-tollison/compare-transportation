@@ -38,6 +38,8 @@ The app will be hosted on here:
 <br>
 [Port 5000](http://127.0.0.1:5000/)
 
+User Stories Can Be Found In 'Compare Transportation User Stories'.docx
+
 APIs Used:
 - Geocoding API: https://docs.mapbox.com/api/search/geocoding/
 - Google Maps APIs
