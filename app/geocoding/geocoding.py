@@ -12,3 +12,22 @@ def reverseGeocode(lat, lng):
         headers={},
         data={})
     return response.json()['features'][0]['place_name']
+
+"""
+Returns a dictionary of the form:
+{
+    'lat': ...,
+    'lng': ...
+}
+Where lat and lng are the coordinates of the address provided
+"""
+def geocode(addr):
+    response = requests.request('GET', 
+        f'https://api.mapbox.com/geocoding/v5/mapbox.places/{addr}.json?access_token={token}',
+        headers={},
+        data={}).json()
+    result = {
+        'lng': response['features'][0]['center'][0],
+        'lat': response['features'][0]['center'][1]
+    }
+    return result
