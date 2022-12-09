@@ -14,7 +14,7 @@ Driving, walking, and biking keys will always be included
 while transit is only included if results are found.
 """
 def getRoutes(origin, destin):
-    key = 'API_KEY' #API_KEY
+    key = 'AIzaSyCkXhjU-_ykijXXYfHDPF4lOTC0YKXCUVk' #API_KEY
     baseUrl = 'https://maps.googleapis.com/maps/api/distancematrix/json?origins=' #base endpoint url
     
     results = {} #dictionary to be returned
