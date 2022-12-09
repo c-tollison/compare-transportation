@@ -43,36 +43,26 @@
 			</div>
 		</form>
 
-		<!--
-			If the full route is input, display it to the user.
-			
-			This display is just temporary for testing, a better
-			way of displaying this to the user would probably
-			include a visual map like the one provided
-			by the Google Maps API.
-		-->
-		{% if template_start and template_destination %}
-		<div class="output_text">
-			<p>Start: {{template_start}}</p>
-			<p>End: {{template_destination}}</p>
+		{% if template_routes %}
+		<div id="travel_methods_div" class="output_txt">
+			<h1 class="output_text">Travel Methods:</h1>
+			{% for key in template_routes.keys() %}
+				<h2 class="output_text">{{template_routes[key]['method']}}</h2>
+				<p class="output_text">Distance: {{template_routes[key]['distance']}}</p>
+				<p class="output_text">Duration: {{template_routes[key]['duration']}}</p>
+			{% endfor %}
 		</div>
 		{% endif %}
 
-		{% if template_routes %}
-		<h2>Travel Methods:</h2>
-		{% for key in template_routes.keys() %}
-			<p>{{template_routes[key]['method']}}</p>
-			<ul>
-				<li>Distance: {{template_routes[key]['distance']}}</li>
-				<li>Duration: {{template_routes[key]['duration']}}</li>
-			</ul>
-		{% endfor %}
-		{% endif %}
-
 		{% if template_weather %}
-			<h2>Weather: {{template_weather['weather']['main']}}</h2>
-			<p>{{template_weather['weather'][0]['main']}}<img src="http://openweathermap.org/img/w/{{template_weather['weather'][0]['icon']}}.png"/></p>
-			<p>Temperature: {{template_weather['main']['temp']}}</p>
+		<div id="weather_div">
+			<h1 class="weather_condition_text">Weather: {{template_weather['weather']['main']}}</h1>
+			<div id="weather_condition">
+				<h2 class="weather_condition_text">{{template_weather['weather'][0]['main']}}</h2>
+				<img id="weather_icon" src="http://openweathermap.org/img/w/{{template_weather['weather'][0]['icon']}}.png"/></h2>
+			</div>
+			<h2 class="weather_condition_text">Temperature: {{template_weather['main']['temp']}} °F</h2>
+		</div>
 		{% endif %}
 
 		<!--
