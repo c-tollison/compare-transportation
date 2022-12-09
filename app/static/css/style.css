@@ -124,9 +124,9 @@ input
 /* Image CSS */
 .mainImg
 {
-    position: relative;
-    bottom:40px;
-    
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
 }
 
 .about_us
