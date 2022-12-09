@@ -59,6 +59,7 @@
 		{% endif %}
 
 		{% if template_routes %}
+		<h2>Travel Methods:</h2>
 		{% for key in template_routes.keys() %}
 			<p>{{template_routes[key]['method']}}</p>
 			<ul>
@@ -66,6 +67,12 @@
 				<li>Duration: {{template_routes[key]['duration']}}</li>
 			</ul>
 		{% endfor %}
+		{% endif %}
+
+		{% if template_weather %}
+			<h2>Weather: {{template_weather['weather']['main']}}</h2>
+			<p>{{template_weather['weather'][0]['main']}}<img src="http://openweathermap.org/img/w/{{template_weather['weather'][0]['icon']}}.png"/></p>
+			<p>Temperature: {{template_weather['main']['temp']}}</p>
 		{% endif %}
 
 		<!--
