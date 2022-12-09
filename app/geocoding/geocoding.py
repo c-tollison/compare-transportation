@@ -14,7 +14,7 @@ def reverseGeocode(lat, lng):
     return response.json()['features'][0]['place_name']
 
 """
-Returns a dictionary of the form:
+Accepts an address string and returns a dictionary of the form:
 {
     'lat': ...,
     'lng': ...
