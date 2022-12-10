@@ -44,3 +44,9 @@ APIs Used:
 - Geocoding API: https://docs.mapbox.com/api/search/geocoding/
 - Google Maps APIs
 - OpenWeather API: https://openweathermap.org/current
+
+Scope:
+  A website that compares different transportation methods and routes
+  by distance and duration given a starting point and destination
+  by the user. Also provides current weather conditions to help
+  the user further compare travel methods.
